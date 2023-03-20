@@ -1,0 +1,22 @@
+@import "../scss/mixins";
+
+:root {
+  // base
+  --font-family: "Gilroy", sans-serif;
+  --content-width: 1200px;
+  --container-offset: 15px;
+  --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
+
+  // colors
+  --color-light: #fff;
+  --color-black: #000;
+  --color-pearl: #f8f8f8;
+  --color-celery-mousse: #cafc92;
+  --color-purple-illusion: #b6b7f2;
+  --color-smoke-screen: #afafaf;
+  --color-trolley-grey: #828282;
+  --color-poppy-red: #dc2f3a;
+
+  // transition
+  --transition-default: 0.3s ease-in;
+}

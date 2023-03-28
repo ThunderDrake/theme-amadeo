@@ -1,0 +1,25 @@
+.hero-slider {
+  max-height: 900px;
+
+  &__pagination {
+    --swiper-pagination-bullet-width: 10px;
+    --swiper-pagination-bullet-height: 10px;
+    --swiper-pagination-bullet-horizontal-gap: 12px;
+    --swiper-pagination-bullet-inactive-color: var(--color-light);
+    --swiper-pagination-bullet-inactive-opacity: 1;
+    --swiper-pagination-color: var(--color-celery-mousse);
+
+    left: 0;
+    right: 0;
+    bottom: 48px !important;
+    margin: 0 auto;
+
+    @include small-tablet {
+      bottom: 10px !important;
+    }
+  }
+
+  @include mobile {
+    margin-bottom: 25px;
+  }
+}

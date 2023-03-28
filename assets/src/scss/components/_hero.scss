@@ -1,0 +1,12 @@
+@import "hero-slider";
+@import "hero-slide";
+
+.hero {
+  &__button {
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+  }
+}

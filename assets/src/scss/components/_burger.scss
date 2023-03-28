@@ -1,0 +1,19 @@
+.burger {
+  &__icon {
+    stroke: var(--color-light);
+  }
+
+  &__icon--close {
+    display: none;
+  }
+}
+
+.burger--active {
+  .burger__icon {
+    display: none;
+  }
+
+  .burger__icon--close {
+    display: block;
+  }
+}

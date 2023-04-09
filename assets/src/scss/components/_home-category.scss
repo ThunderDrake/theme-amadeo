@@ -1,0 +1,51 @@
+.home-collection {
+  position: relative;
+
+  &__link {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  &__image {
+    margin-bottom: 35px;
+
+    @include mobile {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-kettleman);
+    transition: color var(--transition-default);
+
+    @include tablet {
+      font-size: 32px;
+    }
+
+    @include small-tablet {
+      font-size: 25px;
+    }
+
+    @include mobile {
+      font-size: 20px;
+    }
+  }
+
+  &:hover {
+    .home-collection__title {
+      color: var(--color-black);
+    }
+  }
+
+  &--rounded {
+    border-radius: 170px;
+  }
+}

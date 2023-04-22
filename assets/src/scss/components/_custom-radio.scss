@@ -1,0 +1,20 @@
+.custom-radio {
+  cursor: pointer;
+
+  &--colors {
+    .custom-radio__input:checked + .custom-radio__elem {
+      border-color: $color-default-black;
+    }
+
+    .custom-radio {
+      &__elem {
+        display: block;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        background-color: var(--color);
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.home-popular {
+  padding-bottom: 120px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 22px;
+    text-transform: uppercase;
+    color: #616161;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  }
+
+  @include mobile {
+    margin-bottom: 60px;
+  }
+}

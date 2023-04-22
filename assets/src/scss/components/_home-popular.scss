@@ -1,6 +1,10 @@
 .home-popular {
   padding-bottom: 120px;
 
+  &__header {
+    margin-bottom: 50px;
+  }
+
   &__list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));

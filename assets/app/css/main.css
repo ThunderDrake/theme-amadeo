@@ -1473,6 +1473,9 @@ a {
 .home-popular {
   padding-bottom: 120px;
 }
+.home-popular__header {
+  margin-bottom: 50px;
+}
 .home-popular__list {
   display: -ms-grid;
   display: grid;
@@ -1681,7 +1684,6 @@ a {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  margin-bottom: 50px;
 }
 .block-header__title {
   font-weight: 500;

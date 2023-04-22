@@ -1,0 +1,13 @@
+.block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+
+  &__title {
+    font-weight: 500;
+    font-size: 22px;
+    text-transform: uppercase;
+    color: #616161;
+  }
+}

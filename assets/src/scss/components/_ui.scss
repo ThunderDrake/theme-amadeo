@@ -32,4 +32,8 @@
   font-size: 16px;
   text-decoration-line: underline;
   color: #616161;
+
+  @include hover {
+    color: var(--color-gray);
+  }
 }

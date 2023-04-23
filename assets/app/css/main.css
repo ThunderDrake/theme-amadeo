@@ -227,6 +227,11 @@ a {
   text-decoration-line: underline;
   color: #616161;
 }
+@media (any-hover: hover) {
+  .link:hover {
+    color: var(--color-gray);
+  }
+}
 
 .logo {
   position: relative;
@@ -1686,9 +1691,107 @@ a {
   justify-content: space-between;
 }
 .block-header__title {
+  margin: 0;
   font-weight: 500;
   font-size: 22px;
   text-transform: uppercase;
   color: #616161;
+}
+@media (max-width: 576px) {
+  .block-header__title {
+    font-size: 16px;
+  }
+}
+@media (max-width: 576px) {
+  .block-header__link {
+    font-size: 14px;
+  }
+}
+
+.lookbook {
+  overflow: hidden;
+  margin-bottom: 192px;
+}
+.lookbook__container {
+  position: relative;
+}
+.lookbook__container::before {
+  content: "";
+  position: absolute;
+  right: -140px;
+  top: 0;
+  z-index: -1;
+  width: 298px;
+  height: 306px;
+  background-image: url("data:image/svg+xml,%3Csvg width='300' height='308' viewBox='0 0 300 308' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 100.973C20.9897 74.4007 40.4478 45.9408 67.5602 25.5976C73.0462 21.4813 121.989 -13.0445 122.57 7.4516C123.251 31.4935 99.9186 60.6031 88.7844 80.5939C86.9168 83.9469 66.3811 111.937 79.8327 102.648C106.802 84.0243 135.373 67.3354 164.729 52.3978C191.22 38.9185 157.327 78.4746 152.601 85.0606C129.122 117.786 99.1462 146.922 77.8113 180.955C71.007 191.809 105.671 187.322 109.287 186.678C135.699 181.978 161.874 165.497 184.943 153.736C220.743 135.484 256.631 117.137 291.641 97.4836C308.438 88.055 292.059 99.7517 286.01 106.277C252.398 142.541 213.723 174.544 178.734 209.57C174.529 213.78 129.434 247.597 158.954 248.654C181.982 249.478 200.768 238.529 221.76 231.764C227.829 229.808 235.662 227.658 231.145 236.649C225.876 247.138 218.974 255.798 217.14 267.916C215.222 280.589 216.707 294.201 216.707 307' stroke='%23CAFC92' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+@media (max-width: 768px) {
+  .lookbook__container::before {
+    display: none;
+  }
+}
+.lookbook__header {
+  margin-bottom: 24px;
+}
+.lookbook__poster {
+  position: relative;
+}
+.lookbook__poster-image {
+  display: block;
+  height: 100%;
+}
+.lookbook__poster-text {
+  position: absolute;
+  left: 34px;
+  bottom: 34px;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .lookbook__poster-text {
+    left: 15px;
+    top: 15px;
+    bottom: auto;
+  }
+}
+.lookbook__poster-season {
+  font-weight: 500;
+  font-size: 40px;
+  text-transform: uppercase;
+  color: #616161;
+}
+@media (max-width: 768px) {
+  .lookbook__poster-season {
+    display: block;
+    font-size: 24px;
+    color: var(--color-light);
+  }
+}
+@media (max-width: 576px) {
+  .lookbook__poster-season {
+    font-size: 20px;
+  }
+}
+.lookbook__poster-date {
+  font-weight: 500;
+  font-size: 16px;
+  color: #616161;
+}
+@media (max-width: 768px) {
+  .lookbook__poster-date {
+    display: block;
+    color: var(--color-light);
+  }
+}
+@media (max-width: 576px) {
+  .lookbook__poster-date {
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .lookbook__poster {
+    aspect-ratio: 1/1;
+  }
 }
 /*# sourceMappingURL=main.css.map */

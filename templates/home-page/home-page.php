@@ -10,6 +10,7 @@ ct()->header();
   <?php ct()->template( '/home-page/parts/home-page__hero.php' ); ?>
   <?php ct()->template( '/home-page/parts/home-page__category.php' ); ?>
   <?php ct()->template( '/home-page/parts/home-page__popular.php' ); ?>
+  <?php ct()->template( '/home-page/parts/home-page__lookbook.php' ); ?>
 </main>
 <?php
 

@@ -7,10 +7,10 @@
     <div class="gross-form__text">У нас действует специальная программа скидок и предложений для оптовых клиентов</div>
     <form action="#" class="gross-form__form form-gross">
       <label class="form-gross__label">
-        <input type="text" name="Имя" class="input-reset form-gross__input" placeholder="Ваше имя">
+        <input type="text" name="Имя" class="input-reset form-gross__input" data-input-type="name" placeholder="Ваше имя">
       </label>
       <label class="form-gross__label">
-        <input type="text" name="E-mail" class="input-reset form-gross__input" placeholder="Ваш e-mail">
+        <input type="text" name="E-mail" class="input-reset form-gross__input" data-input-type="email" placeholder="Ваш e-mail">
       </label>
       <button class="btn-reset form-gross__btn">Узнать больше</button>
     </form>

@@ -82,6 +82,24 @@
   grid-template-columns: repeat(3, minmax(100px, 250px));
   gap: 10px;
 
+  &__label {
+    position: relative;
+
+    .just-validate-error-label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      transform: translateY(120%);
+
+      @include small-tablet {
+        position: static;
+        transform: translate(0);
+      }
+    }
+  }
+
   &__input {
     padding: 18px;
     width: 100%;

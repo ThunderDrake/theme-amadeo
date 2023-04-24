@@ -2017,6 +2017,27 @@ a {
   grid-template-columns: repeat(3, minmax(100px, 250px));
   gap: 10px;
 }
+.form-gross__label {
+  position: relative;
+}
+.form-gross__label .just-validate-error-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  -webkit-transform: translateY(120%);
+  -ms-transform: translateY(120%);
+  transform: translateY(120%);
+}
+@media (max-width: 768px) {
+  .form-gross__label .just-validate-error-label {
+    position: static;
+    -webkit-transform: translate(0);
+    -ms-transform: translate(0);
+    transform: translate(0);
+  }
+}
 .form-gross__input {
   padding: 18px;
   width: 100%;

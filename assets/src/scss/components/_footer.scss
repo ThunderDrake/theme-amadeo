@@ -1,0 +1,177 @@
+.footer {
+  position: relative;
+  padding-top: 87px;
+  padding-bottom: 112px;
+  background-color: #afafaf;
+
+  &::before {
+    content: "";
+    position: absolute;
+    right: 30%;
+    bottom: 0;
+    width: 260px;
+    height: 430px;
+    background-image: url("../img/footer__decor.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @media (max-width: 1800px) {
+      right: 25%;
+    }
+
+    @media (max-width: 1300px) {
+      right: 15%;
+    }
+
+    @media (max-width: 1100px) {
+      right: 10%;
+      width: 200px;
+      height: 250px;
+      background-size: contain;
+    }
+
+    @include mobile {
+      width: 170px;
+      height: 340px;
+      background-image: url("../img/footer__decor-mobile.svg");
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 130px;
+
+    @include tablet {
+      gap: 60px;
+    }
+
+    @include small-tablet {
+      display: grid;
+      justify-content: inherit;
+      grid-template-columns: repeat(3, auto);
+      gap: 0;
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, auto);
+    }
+  }
+
+  &__logo {
+    display: block;
+    margin-bottom: 36px;
+  }
+
+  &__phone {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+
+    &-icon {
+      margin-right: 4px;
+      fill: none;
+      stroke: #f2f2f2;
+    }
+
+    &-link {
+      font-weight: 500;
+      font-size: 12px;
+      color: #f2f2f2;
+
+      @include hover {
+        color: #000;
+      }
+    }
+  }
+
+  &__work-time {
+    font-weight: 500;
+    font-size: 12px;
+    color: #f2f2f2;
+  }
+
+  &__menu {
+    font-weight: 500;
+    font-size: 12px;
+    color: #f2f2f2;
+
+    &-item {
+      margin-bottom: 18px;
+    }
+
+    a {
+      color: inherit;
+
+      @include hover {
+        color: #000;
+      }
+    }
+  }
+
+  &__col {
+    max-width: 160px;
+
+    &--first {
+      @include mobile {
+        margin-bottom: 77px;
+      }
+    }
+
+    &--second {
+      @include mobile {
+        margin-bottom: 50px;
+      }
+    }
+
+    &--third {
+      @include small-tablet {
+        grid-column: 2;
+        grid-row: 2;
+      }
+    }
+
+    @include mobile {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+
+  &__up {
+    align-self: flex-start;
+    margin-right: 0;
+    margin-left: auto;
+
+    &-icon {
+      fill: none;
+      stroke: #f2f2f2;
+      pointer-events: none;
+    }
+
+    @include hover {
+      svg {
+        stroke: #000;
+      }
+    }
+
+    @include small-tablet {
+      grid-column: 3;
+      grid-row: 1;
+      margin-right: 0;
+      margin-left: auto;
+    }
+
+    @include mobile {
+      grid-column: 2;
+    }
+  }
+
+  @include mobile {
+    padding: 40px 0;
+  }
+
+  @include tablet {
+    padding-top: 50px;
+    padding-bottom: 60px;
+  }
+}

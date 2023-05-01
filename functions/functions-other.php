@@ -519,3 +519,169 @@ function get_param_strings_for_filter( $key ) {
 function get_param_for_filter( $key, $default = '' ) {
 	return $_GET[ $key ] ?? $default;
 }
+
+
+## Код кэширует минимальную и максимальную цену для
+## каждой рубрики и по всем продуктам в целом.
+## ver 1
+
+// ставим обновление опции в очередь через минуту после обновления записи...
+add_action( 'save_post_product', [ 'Minmax_Prices', 'save_post_update' ] );
+add_action( 'deleted_post', [ 'Minmax_Prices', 'save_post_update' ] );
+
+Minmax_Prices::check_for_update();
+
+final class Minmax_Prices {
+
+	// мета ключ в котором находится цена товара
+	private static $price_meta_key = '_regular_price';
+	// таксономия
+	private static $tax_name = 'product_cat';
+	// время в сек. после которого скрипт сработает при обновлении записи (продукта)
+	private static $up_timeout = 60;
+
+	private static $minmax_option = 'product_cat_minmax_prices';
+
+	public static function get_data() {
+		return get_option( self::$minmax_option, [] );
+	}
+
+	public static function check_for_update() {
+		$minmax_prices = self::get_data();
+		$uptime = &$minmax_prices['uptime'];
+		if( empty( $uptime ) || time() > $uptime ){
+			self::update_data();
+		}
+	}
+
+	public static function save_post_update() {
+		$minmax_prices = self::get_data();
+		$minmax_prices['uptime'] = time() + self::$up_timeout;
+
+		update_option( self::$minmax_option, $minmax_prices );
+	}
+
+	/**
+	 * Обновляет все данные minmax разом.
+	 *
+	 * @return void
+	 */
+	public static function update_data() {
+		global $wpdb;
+
+		// все рубрики со всеми включенными или нет записями в них
+		$cat_data_sql = "SELECT term_id, object_id, parent FROM $wpdb->term_taxonomy tax LEFT JOIN $wpdb->term_relationships rel
+		ON (rel.term_taxonomy_id = tax.term_taxonomy_id) WHERE taxonomy = '" . esc_sql( self::$tax_name ) . "'";
+
+		$cat_data = $wpdb->get_results( $cat_data_sql );
+		$origin_cat_data = $cat_data; // сохраним на всякий...
+
+		// создадим новый массив, где ключом будет ID рубрики, а значение объект с данными parent
+		// и всеми ID рубрик в массиве object_id (в рубрике записей может быть несколько...)
+		$_cat_data = [];
+		foreach( $cat_data as $data ){
+			$_term = &$_cat_data[ $data->term_id ];
+			if( ! $_term ){
+				$_term = (object) [
+					'parent'    => $data->parent,
+					'object_id' => [],
+				];
+			}
+
+			if( $data->object_id ){
+				$_term->object_id[] = $data->object_id;
+			}
+		}
+		unset( $_term );
+		$cat_data = $_cat_data;
+
+		// соберем дочерние рубрики в родительские в элемент 'child'. child будет PHP ссылкой на текущий элемент рубрики, чтобы добится
+		// рекурсиии и многоуровневой вложенности. Так каждая рубрика будет содержать все данные о записях своей и всех уровней вложенных подрубрик...
+		foreach( $cat_data as $term_id => $data ){
+			// есть родитель добавляем ссылку на этот элемент к родителю в элемент 'child'
+			if( $data->parent ){
+				$_child = &$cat_data[ $data->parent ]->child; // для удобности...
+				if( empty( $_child ) ){
+					$_child = [];
+				}
+				$_child[] = &$cat_data[ $term_id ]; // ссылка
+			}
+		}
+		unset( $_child );
+		// die( print_r(  $cat_data  ) ); // посмотреть что за монстр-массив у нас получился, без него код понять нереально :)
+
+		// соберем все ID записей в один массив сэлементом вида: term_id => все ID записей из рубрики и всех уровней вложенных рубрик...
+		$_cat_data = [];
+		foreach( $cat_data as $term_id => $data ){
+			$prod_ids = [];
+
+			self::_recursion_collect_ids( $prod_ids, $data );
+
+			$_cat_data[ $term_id ] = array_unique( $prod_ids );
+		}
+		$cat_data = $_cat_data;
+
+		// ВСЕ! массив готов, обираем все MIN MAX данные
+		$minmax_prices = [];
+		$minmax_prices['uptime'] = time() + ( DAY_IN_SECONDS / 2 ); // каждые пол дня
+
+		// all - для всех товаров
+		$mnimax_sql_base = "SELECT MIN( CAST(meta_value as UNSIGNED) ) as min, MAX(CAST(meta_value as UNSIGNED)) as max
+		FROM $wpdb->postmeta WHERE meta_key = '" . esc_sql( self::$price_meta_key ) . "' AND meta_value > 0";
+		$minmax = $wpdb->get_row( $mnimax_sql_base, ARRAY_A );
+		$minmax_prices['all'] = implode( ',', $minmax );
+
+		// в разрезе рубрик
+		foreach( $cat_data as $term_id => $prod_ids ){
+			if( empty( $prod_ids ) ){
+				continue;
+			}
+
+			$_IN_sql_list = implode( ',', array_map( 'intval', $prod_ids ) );
+
+			$mnimax_sql = "$mnimax_sql_base AND post_id IN( $_IN_sql_list )";
+			$minmax = $wpdb->get_row( $mnimax_sql, ARRAY_A );
+
+			// если есть хоть одно значение
+			if( array_filter( $minmax ) ){
+				if( ! $minmax['min'] ){
+					$minmax['min'] = $minmax['max'];
+				} // нулей быть не должно
+				if( ! $minmax['max'] ){
+					$minmax['max'] = $minmax['min'];
+				} // нулей быть не должно
+
+				$minmax_prices[ $term_id ] = implode( ',', $minmax );
+			}
+		}
+
+		// обновляем
+		update_option( self::$minmax_option, $minmax_prices );
+	}
+
+	/**
+	 * Рекурсивно собарает object_id в указанный $collector.
+	 */
+	private static function _recursion_collect_ids( &$collector, $data ) {
+		// добавим родные данные
+		if( $data->object_id ){
+			if( is_array( $data->object_id ) ){
+				$collector = array_merge( $collector, $data->object_id );
+			}
+			else{
+				$collector[] = $data->object_id;
+			}
+		}
+
+		// првоерим детей и там рекурсией...
+		if( isset( $data->child ) ){
+			foreach( $data->child as $_data ){
+				self::_recursion_collect_ids( $collector, $_data ); // recursion
+				//call_user_func_array( [__CLASS__, __METHOD__], [ $collector, $_data ] );
+			}
+		}
+	}
+
+}
+
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );

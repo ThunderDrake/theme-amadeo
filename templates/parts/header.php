@@ -1,3 +1,10 @@
+<?php
+/**
+ * Шаблон шапки сайта
+ */
+
+$header_class = is_front_page() ? '' : 'header--inner'
+?>
 <!DOCTYPE html>
 <html lang="ru" class="page">
 
@@ -16,7 +23,7 @@
   <?php wp_head() ?>
 </head>
 
-<body>
+<body class="page__body">
   <div class="mobile-menu" data-menu>
     <div class="mobile-menu__container container">
       <div class="mobile-menu__nav">
@@ -84,7 +91,7 @@
       </div>
     </div>
   </div>
-  <header class="header">
+  <header class="header <?= $header_class ?>">
     <div class="header__container container">
       <a class="header__logo logo" href="#">
         <svg class="logo__svg" width="92" height="26">

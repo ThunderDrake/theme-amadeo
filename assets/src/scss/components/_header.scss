@@ -67,6 +67,26 @@
       margin: 0 6px;
     }
   }
+
+  &--inner {
+    position: static;
+
+    .nav__link {
+      color: var(--color-gray);
+    }
+
+    .logo__svg {
+      fill: var(--color-gray);
+    }
+
+    .header__icon {
+      stroke: var(--color-gray);
+    }
+
+    .burger__icon {
+      stroke: var(--color-gray);
+    }
+  }
 }
 
 .header--menu-active {

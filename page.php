@@ -1,8 +1,8 @@
-<?php 
+<?php
 /**
  * Шаблон по умолчанию для страницы
  */
-
+error_log( print_r( $GLOBALS['wp_query'], true ) );
 ct()->header();
 ?>
     <main>

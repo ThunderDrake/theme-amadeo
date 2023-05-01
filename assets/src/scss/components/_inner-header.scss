@@ -1,0 +1,26 @@
+.inner-header {
+  padding-top: 20px;
+  padding-bottom: 28px;
+
+  &__title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: var(--color-black);
+
+    @include small-tablet {
+      font-size: 30px;
+    }
+
+    @include mobile {
+      font-size: 20px;
+    }
+  }
+
+  @include mobile {
+    padding-top: 5px;
+    padding-bottom: 15px;
+  }
+}

@@ -1,0 +1,78 @@
+.no-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &__image-wrapper {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 10%;
+      bottom: 10%;
+      width: 541px;
+      height: 189px;
+      background-image: url("data:image/svg+xml,%3Csvg width='542' height='189' viewBox='0 0 542 189' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-1 88.2711C0.285165 81.8452 9.39166 75.5308 13.7798 71.3799C30.7423 55.3343 48.2182 39.8659 64.9501 23.563C73.1219 15.6007 85.2475 11.0607 92.5224 2.57326C100.169 -6.34828 85.5193 25.1195 80.2266 35.6104C71.0548 53.7902 60.552 71.3197 49.6735 88.5195C37.1135 108.378 46.6858 92.8768 38.4955 105.162C38.3035 105.45 37.0227 107.096 37.5019 107.895C38.4401 109.458 69.1573 77.6509 70.539 76.3479C83.1299 64.4742 96.6976 53.67 109.538 42.0688C113.089 38.8603 120.683 28.5971 120.964 33.3748C121.203 37.4394 115.491 45.2385 113.761 48.2788C103.452 66.393 90.8893 83.1212 77.991 99.449C66.6324 113.828 28.7465 151.466 45.3265 143.664C55.5053 138.874 64.937 128.472 73.5198 121.681C94.7954 104.845 116.759 88.8348 139.718 74.3607C140.724 73.7268 149.452 68.0774 152.759 67.0329C153.942 66.6593 151.93 69.4261 151.145 70.3863C136.677 88.0686 121.368 105.094 105.936 121.929C87.428 142.12 68.5433 161.822 48.6799 180.676C39.9388 188.972 41.1165 188.889 49.7977 182.042C65.959 169.295 81.5616 155.851 97.3662 142.671C108.78 133.152 126.098 113.872 141.83 110.875C150.813 109.164 138.296 129.066 134.129 137.206C127.837 149.499 113.537 167.731 112.27 181.918C112.069 184.169 116.761 183.354 118.977 182.911C124.895 181.728 138.113 177.796 143.072 176.204C183.085 163.364 222.68 148.948 262.303 134.97C333.614 109.815 405.092 85.4283 477.914 64.9215C493.819 60.4426 521.999 50.8638 540.014 52.5015' stroke='%23AFAFAF' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      transform: translateX(-100%);
+
+      @include mobile {
+        bottom: 45%;
+        width: 100px;
+        height: 40px;
+        background-size: contain;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 10%;
+      bottom: 30%;
+      width: 510px;
+      height: 145px;
+      background-image: url("data:image/svg+xml,%3Csvg width='509' height='144' viewBox='0 0 509 144' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 104.674C32.9713 98.2113 59.3798 83.8435 88.479 69.4932C126.099 50.9408 163.926 32.6417 202.781 16.7902C206.661 15.2073 244.533 -3.68901 252.249 2.098C254.702 3.93742 218.077 68.7318 216.53 72.189C206.842 93.8436 198.05 115.873 188.763 137.697C186.678 142.598 186.289 144.151 190.65 140.663C215.527 120.761 243.224 102.487 271.12 87.1508C289.625 76.9773 301.008 66.3036 318.836 77.4459C363.959 105.648 410.137 131.723 464.14 137.832C509.415 142.954 555.883 136.414 600.548 129.205C604.465 128.573 618.799 126.954 624.541 124.083' stroke='%23AFAFAF' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      transform: translateX(100%);
+
+      @include mobile {
+        bottom: 28%;
+        width: 100px;
+        height: 40px;
+        background-size: contain;
+      }
+    }
+  }
+
+  &__image {
+    @include mobile {
+      max-width: 210px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 12px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    color: #afafaf;
+
+    @include mobile {
+      margin-bottom: 30px;
+      max-width: 165px;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+}

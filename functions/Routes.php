@@ -36,6 +36,10 @@ class Routes {
       return $this->locate_template( 'catalog-page/catalog.php' );
     }
 
+    if(is_404()) {
+      return $this->locate_template( 'page-404/page-404.php' );
+    }
+
 		/***************
 		 *** Общие ***
 		 ***************/

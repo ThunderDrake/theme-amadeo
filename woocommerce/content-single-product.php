@@ -18,7 +18,11 @@
 defined( 'ABSPATH' ) || exit;
 
 global $product;
+global $wp_query;
 
+
+$terms = get_the_terms( get_the_ID(), 'product_cat' );
+error_log( print_r( $terms, true ) );
 /**
  * Hook: woocommerce_before_single_product.
  *
@@ -43,27 +47,23 @@ if ( post_password_required() ) {
             <a class="breadcrumbs__link" href="/">Главная</a>
           </li>
           <li class="breadcrumbs__item">
-            <span class="breadcrumbs__link">Школьная форма</span>
+            <span class="breadcrumbs__link"><?= $terms[0]->name ?></span>
           </li>
         </ul>
       </div>
 
       <div class="product-page__product-info product">
 
-      <?php if($product->is_type( 'variable' )): ?>
+      <?php if($attach_ids = $product->get_gallery_image_ids()): ?>
 
         <div class="product__images">
           <div class="swiper product__main-slider">
             <div class="swiper-wrapper">
+              <?php foreach($attach_ids as $id): ?>
               <div class="swiper-slide product__main-image">
-                <img src="<?= ct()->get_static_url(); ?>/img/product__image.jpg" alt="">
+                <img src="<?= wp_get_attachment_image_url($id, 'full') ?>" alt="">
               </div>
-              <div class="swiper-slide product__main-image">
-                <img src="<?= ct()->get_static_url(); ?>/img/product__image.jpg" alt="">
-              </div>
-              <div class="swiper-slide product__main-image">
-                <img src="<?= ct()->get_static_url(); ?>/img/product__image.jpg" alt="">
-              </div>
+              <?php endforeach; ?>
             </div>
 
             <div class="product__main-slider-pagination swiper-pagination"></div>
@@ -71,20 +71,16 @@ if ( post_password_required() ) {
 
           <div class="swiper product__additional-slider">
             <div class="swiper-wrapper">
+              <?php foreach($attach_ids as $id): ?>
               <div class="swiper-slide product__additional-image">
-                <img src="<?= ct()->get_static_url(); ?>/img/product__image.jpg" alt="">
+                <img src="<?= wp_get_attachment_image_url($id, 'full') ?>" alt="">
               </div>
-              <div class="swiper-slide product__additional-image">
-                <img src="<?= ct()->get_static_url(); ?>/img/product__image.jpg" alt="">
-              </div>
-              <div class="swiper-slide product__additional-image">
-                <img src="<?= ct()->get_static_url(); ?>/img/product__image.jpg" alt="">
-              </div>
+              <?php endforeach; ?>
             </div>
             <div class="product__additional-slider-button swiper-button-next"></div>
           </div>
         </div>
-      <?php elseif($product->is_type( 'simple' )): ?>
+      <?php else: ?>
         <div class="product__images">
           <?= woocommerce_get_product_thumbnail('full') ?>
         </div>
@@ -95,7 +91,7 @@ if ( post_password_required() ) {
           </span>
           <h1 class="product__title"><?= get_the_title() ?></h1>
           <div class="product__labels">
-            <div class="product__label">Sale</div>
+            <!-- <div class="product__label">Sale</div> -->
           </div>
           <div class="product__autorize"><a class="product__autorize-link product__link" href="#">авторизуйтесь</a>,
             чтобы узнать скидку</div>

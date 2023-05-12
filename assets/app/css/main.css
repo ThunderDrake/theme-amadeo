@@ -1552,7 +1552,6 @@ a {
 }
 .product-card__size {
   display: block;
-  padding: 6px 0;
   width: 100%;
   height: 100%;
   font-weight: 500;
@@ -1560,6 +1559,12 @@ a {
   text-align: center;
   color: #828282;
   background-color: #d9d9d9;
+}
+.product-card__size .custom-radio__elem {
+  display: block;
+  border: 1px solid transparent;
+  padding: 6px 0;
+  width: 100%;
 }
 .product-card__size-wrapper {
   margin-bottom: 22px;
@@ -1715,6 +1720,9 @@ a {
   width: 18px;
   height: 18px;
   background-color: var(--color);
+}
+.custom-radio--size .custom-radio__input:checked + .custom-radio__elem {
+  border: 1px solid #333;
 }
 
 .block-header {

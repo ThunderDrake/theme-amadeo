@@ -33,7 +33,7 @@ $header_class = is_front_page() ? '' : 'header--inner'
             <li class="main-nav__item accordion__element" data-has-submenu data-accordion="element">
               <div class="accordion__button" data-accordion="button" tabindex="0">
                 <a class="mobile-menu__link"
-                  href="/schools/">школьная форма</a>
+                  href="/product-category/clothing/school-closes/">школьная форма</a>
               </div>
               <div class="accordion__content" data-accordion="content">
                 <div class="submenu" data-submenu>
@@ -48,7 +48,7 @@ $header_class = is_front_page() ? '' : 'header--inner'
             <li class="main-nav__item accordion__element" data-has-submenu data-accordion="element">
               <div class="accordion__button" data-accordion="button" tabindex="0">
                 <a class="mobile-menu__link"
-                  href="/schools/">верхняя одежда</a>
+                  href="/product-category/clothing/outwear/">верхняя одежда</a>
               </div>
               <div class="accordion__content" data-accordion="content">
                 <div class="submenu" data-submenu>
@@ -63,7 +63,7 @@ $header_class = is_front_page() ? '' : 'header--inner'
             <li class="main-nav__item accordion__element" data-has-submenu data-accordion="element">
               <div class="accordion__button" data-accordion="button" tabindex="0">
                 <a class="mobile-menu__link"
-                  href="/schools/">оптовым клиентам</a>
+                  href="/opt/">оптовым клиентам</a>
               </div>
               <div class="accordion__content" data-accordion="content">
                 <div class="submenu" data-submenu>
@@ -77,23 +77,23 @@ $header_class = is_front_page() ? '' : 'header--inner'
             </li>
             <li class="main-nav__item accordion__element main-nav__item--no-submenu" data-no-submenu>
               <a class="mobile-menu__link"
-                href="#">доставка и оплата</a>
+                href="/delivery/">доставка и оплата</a>
             </li>
           </ul>
         </nav>
       </div>
       <div class="mobile-menu__footer">
         <ul class="mobile-menu__footer-nav list-reset">
-          <li class="mobile-menu__footer-item"><a class="mobile-menu__link" href="#">популярные товары</a></li>
-          <li class="mobile-menu__footer-item"><a class="mobile-menu__link" href="#">лукбук</a></li>
-          <li class="mobile-menu__footer-item"><a class="mobile-menu__link" href="#">о нас</a></li>
+          <li class="mobile-menu__footer-item"><a class="mobile-menu__link" href="/popular/">популярные товары</a></li>
+          <li class="mobile-menu__footer-item"><a class="mobile-menu__link" href="/lookbook/">лукбук</a></li>
+          <li class="mobile-menu__footer-item"><a class="mobile-menu__link" href="/about/">о нас</a></li>
         </ul>
       </div>
     </div>
   </div>
   <header class="header <?= $header_class ?>">
     <div class="header__container container">
-      <a class="header__logo logo" href="#">
+      <a class="header__logo logo" href="/">
         <svg class="logo__svg" width="92" height="26">
           <use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#logo"></use>
         </svg>
@@ -109,8 +109,8 @@ $header_class = is_front_page() ? '' : 'header--inner'
       </button>
       <nav class="header__nav nav">
         <ul class="nav__list list-reset">
-          <li class="nav__item"><a href="#" class="nav__link">школьная форма</a></li>
-          <li class="nav__item"><a href="#" class="nav__link">верхняя одежда</a></li>
+          <li class="nav__item"><a href="/product-category/clothing/school-closes/" class="nav__link">школьная форма</a></li>
+          <li class="nav__item"><a href="/product-category/clothing/outwear/" class="nav__link">верхняя одежда</a></li>
           <li class="nav__item"><a href="#" class="nav__link">оптовым клиентам</a></li>
           <li class="nav__item"><a href="#" class="nav__link">доставка и оплата</a></li>
         </ul>

@@ -17,4 +17,10 @@
       }
     }
   }
+
+  &--size {
+    .custom-radio__input:checked + .custom-radio__elem {
+      border: 1px solid #333;
+    }
+  }
 }

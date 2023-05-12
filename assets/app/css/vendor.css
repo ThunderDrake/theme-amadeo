@@ -341,6 +341,53 @@ template {
   display: none;
 }
 
+.accordion {
+  --accordion-time: 0.3s;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.accordion__control {
+  width: 100%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.accordion__content {
+  overflow: hidden;
+  padding: 0 20px;
+  max-height: 0;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  opacity: 0;
+  -webkit-transition: all var(--accordion-time) ease-out;
+  -o-transition: all var(--accordion-time) ease-out;
+  transition: all var(--accordion-time) ease-out;
+  will-change: max-height;
+}
+
+.accordion__icon {
+  -webkit-transition: -webkit-transform var(--accordion-time) ease-out;
+  transition: -webkit-transform var(--accordion-time) ease-out;
+  -o-transition: transform var(--accordion-time) ease-out;
+  transition: transform var(--accordion-time) ease-out;
+  transition: transform var(--accordion-time) ease-out, -webkit-transform var(--accordion-time) ease-out;
+}
+
+.is-open .accordion__icon {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.is-open .accordion__content {
+  padding: 20px;
+  opacity: 1;
+}
+
 /**
  * Swiper 7.4.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions

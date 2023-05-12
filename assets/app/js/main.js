@@ -22,6 +22,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_filter_price_range__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/filter-price-range */ "./assets/src/js/components/filter-price-range.js");
 /* harmony import */ var _components_catalog_sort__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/catalog-sort */ "./assets/src/js/components/catalog-sort.js");
 /* harmony import */ var _components_catalog_mobile_filter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/catalog-mobile-filter */ "./assets/src/js/components/catalog-mobile-filter.js");
+/* harmony import */ var _components_product_page_size_slider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/product-page-size-slider */ "./assets/src/js/components/product-page-size-slider.js");
+/* harmony import */ var _components_product_info_accordion__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/product-info-accordion */ "./assets/src/js/components/product-info-accordion.js");
+/* harmony import */ var _components_product_info_accordion__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_product_info_accordion__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_product_images_sliders__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/product-images-sliders */ "./assets/src/js/components/product-images-sliders.js");
+
+
+
 
 
 
@@ -543,6 +550,118 @@ if (productCard.length > 0) {
           prevEl: '.swiper-button-prev'
         }
       });
+    }
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/src/js/components/product-images-sliders.js":
+/*!************************************************************!*\
+  !*** ./assets/src/js/components/product-images-sliders.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+
+const productImagesContainer = document.querySelector('.product__images');
+if (productImagesContainer) {
+  let productMainSlider = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.product__main-slider', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets'
+    }
+  });
+  let productAdditionalSlider = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.product__additional-slider', {
+    slidesPerView: 2,
+    direction: 'vertical',
+    navigation: {
+      nextEl: '.product__additional-slider-button.swiper-button-next'
+    }
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/src/js/components/product-info-accordion.js":
+/*!************************************************************!*\
+  !*** ./assets/src/js/components/product-info-accordion.js ***!
+  \************************************************************/
+/***/ (() => {
+
+const accordions = document.querySelectorAll('.accordion');
+class GraphAccordion {
+  constructor(selector, options) {
+    let defaultOptions = {
+      isOpen: () => {},
+      isClose: () => {},
+      speed: 300
+    };
+    this.options = Object.assign(defaultOptions, options);
+    this.accordion = selector;
+    this.control = this.accordion.querySelector('.accordion__control');
+    this.content = this.accordion.querySelector('.accordion__content');
+    this.event();
+  }
+  event() {
+    if (this.accordion) {
+      this.accordion.addEventListener('click', e => {
+        e.preventDefault();
+        this.accordion.classList.toggle('open');
+        if (this.accordion.classList.contains('open')) {
+          this.open();
+        } else {
+          this.close();
+        }
+      });
+    }
+  }
+  open() {
+    this.accordion.style.setProperty('--accordion-time', `${this.options.speed / 1000}s`);
+    this.accordion.classList.add('is-open');
+    this.control.setAttribute('aria-expanded', true);
+    this.content.setAttribute('aria-hidden', false);
+    this.content.style.maxHeight = this.content.scrollHeight + 'px';
+    this.options.isOpen(this);
+  }
+  close() {
+    this.accordion.classList.remove('is-open');
+    this.control.setAttribute('aria-expanded', false);
+    this.content.setAttribute('aria-hidden', true);
+    this.content.style.maxHeight = null;
+    this.options.isClose(this);
+  }
+}
+if (accordions) {
+  accordions.forEach(el => {
+    new GraphAccordion(el);
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/src/js/components/product-page-size-slider.js":
+/*!**************************************************************!*\
+  !*** ./assets/src/js/components/product-page-size-slider.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+
+const singleProductSizes = document.querySelector('.product-card__size-buttons');
+if (singleProductSizes) {
+  let buttonSlider = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](singleProductSizes, {
+    slidesPerView: 4,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
     }
   });
 }

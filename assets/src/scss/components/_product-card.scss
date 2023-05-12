@@ -137,6 +137,13 @@
 
     &-list {
       display: flex;
+
+      &-label {
+        margin-right: 15px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #828282;
+      }
     }
   }
 
@@ -180,7 +187,7 @@
   right: 0;
   bottom: 0;
   z-index: 5;
-  padding: 30px 15px 0;
+  padding: 30px 15px 20px;
   max-height: none;
   background-color: #fff;
   filter: drop-shadow(0 2px 31px rgb(186 186 186 / 20%));

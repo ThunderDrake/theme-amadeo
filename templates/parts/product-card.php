@@ -1,6 +1,9 @@
+<?php
+global $product;
+?>
 <div class="product-card" data-product-id="<?= get_the_ID() ?>">
   <div class="product-card__image">
-    <img src="<?= ct()->get_static_url() ?>/img/product-card__image.jpg" alt="">
+    <?= woocommerce_get_product_thumbnail() ?>
     <div class="product-card__label">sale</div>
     <button class="product-card__favorite btn-reset">
       <svg class="product-card__favorite-icon" width="17" height="15">
@@ -9,13 +12,21 @@
     </button>
   </div>
   <div class="product-card__content">
-    <div class="product-card__price">
-      <div class="product-card__price-current">12 792 ₽</div>
-      <div class="product-card__price-old">15 965 ₽</div>
-    </div>
-    <div class="product-card__title">
+    <?php if($product->get_price()): ?>
+      <?php if($product->get_sale_price()): ?>
+      <div class="product-card__price">
+        <div class="product-card__price-current"><?= $product->get_sale_price() ?> ₽</div>
+        <div class="product-card__price-old"><?= $product->get_regular_price() ?> ₽</div>
+      </div>
+      <?php else: ?>
+      <div class="product-card__price">
+        <div class="product-card__price-current"><?= $product->get_regular_price() ?> ₽</div>
+      </div>
+      <?php endif; ?>
+    <?php endif; ?>
+    <a class="product-card__title" href="<?= get_permalink(get_the_ID()) ?>">
       <?= cth() -> trim_words(['maxchar' => 40, 'text' => get_the_title()]) ?>
-    </div>
+    </a>
     <div class="product-card__color-list">
       <label class="product-card__color custom-radio custom-radio--colors" style="--color: #E4202C">
         <input class="custom-radio__input visually-hidden" type="radio" name="pa:color-<?= get_the_ID() ?>">

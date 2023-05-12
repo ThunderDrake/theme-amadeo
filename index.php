@@ -7,7 +7,7 @@ if ( ! current_user_can( 'update_core' ) ) {
 	return;
 }
 
-@get_header();
+get_header();
 ?>
 
     <h2 id="title-header">К сожалению, не найден шаблон для отображения этой страницы</h2>
@@ -25,4 +25,4 @@ if ( ! current_user_can( 'update_core' ) ) {
     </script>
 
 <?php
-@get_footer();
+get_footer();

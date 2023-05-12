@@ -1,4 +1,12 @@
-<div class="filters">
+<div class="filters" data-filter>
+  <div class="filters__title">Все фильтры</div>
+  <button class="filters__mobile-close btn-reset" data-filter-close>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.9583 18.9583L5 5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M5 18.9583L18.9583 5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
   <div class="filters__wrapper">
     <form action="">
 
@@ -224,4 +232,5 @@
       </div>
     </form>
   </div>
+  <button class="btn-reset filters__accept-button" data-filter-accept>Применить</button>
 </div>

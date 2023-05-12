@@ -6,3 +6,5 @@ import './components/gross-form-validation';
 import './components/footer-up-button';
 import './components/filter-show-more';
 import './components/filter-price-range';
+import './components/catalog-sort';
+import './components/catalog-mobile-filter';
